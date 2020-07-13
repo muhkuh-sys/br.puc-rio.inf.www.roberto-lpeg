@@ -37,7 +37,7 @@ tHash_SHA512 = hashlib.sha512()
 tFile = open(strInputPath, 'rb')
 while True:
     strData = tFile.read(4096)
-    if strData == '':
+    if not strData:
         break
 
     tHash_MD5.update(strData)

@@ -1,6 +1,5 @@
 import argparse
 import re
-import string
 import subprocess
 import sys
 
@@ -46,7 +45,7 @@ def main(argv):
     astrAllowedDlls = __astrStandardDlls
     if aOptions.astrUserDlls is not None:
         for strDll in aOptions.astrUserDlls:
-            astrAllowedDlls.append(string.lower(strDll))
+            astrAllowedDlls.append(strDll.lower())
 
     for strInFile in aOptions.infile:
         if aOptions.fVerbose is True:
@@ -55,7 +54,7 @@ def main(argv):
         # Get all DLL dependencies from the file.
         aCmd = [aOptions.strObjDump, '-p', strInFile]
         tProc = subprocess.Popen(aCmd, stdout=subprocess.PIPE)
-        strOutput = tProc.communicate()[0]
+        strOutput = tProc.communicate()[0].decode("utf-8", "replace")
         if tProc.returncode != 0:
             raise Exception('The command failed with return code %d: %s' % (
                 tProc.returncode,
@@ -66,7 +65,7 @@ def main(argv):
         for tMatch in re.finditer(r'DLL Name:\s+(.+).dll', strOutput):
             # Strip all leading and trailing spaces from the DLL name and
             # convert it to lower case.
-            strDll = string.lower(string.strip(tMatch.group(1)))
+            strDll = tMatch.group(1).strip().lower()
             if aOptions.fVerbose is True:
                 print('Found dependency %s.dll' % strDll)
             if strDll not in astrAllowedDlls:

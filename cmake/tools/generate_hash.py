@@ -1,26 +1,29 @@
 import argparse
 import glob
 import hashlib
-import os.path
 import string
 
 
-tParser = argparse.ArgumentParser(description='Generate a hash file for jonchki.')
+tParser = argparse.ArgumentParser(
+    description='Generate a hash file for jonchki.'
+)
 tParser.add_argument('input')
 tParser.add_argument('output', nargs='?', default=None)
 tArgs = tParser.parse_args()
 
 astrIn = glob.glob(tArgs.input)
-if len(astrIn)==0:
+if len(astrIn) == 0:
     raise Exception('The input file "%s" does not exist.' % tArgs.input)
-if len(astrIn)!=1:
-    raise Exception('More than one match found for pattern "%s".' % tArgs.input)
+if len(astrIn) != 1:
+    raise Exception(
+        'More than one match found for pattern "%s".' % tArgs.input
+    )
 strInputPath = astrIn[0]
 
 if tArgs.output is None:
-  strOutputPath = '%s.hash' % strInputPath
+    strOutputPath = '%s.hash' % strInputPath
 else:
-  strOutputPath = tArgs.output
+    strOutputPath = tArgs.output
 
 
 # Create all hash instances.
@@ -34,7 +37,7 @@ tHash_SHA512 = hashlib.sha512()
 tFile = open(strInputPath, 'rb')
 while True:
     strData = tFile.read(4096)
-    if strData=='':
+    if strData == '':
         break
 
     tHash_MD5.update(strData)

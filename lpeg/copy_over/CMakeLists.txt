@@ -15,6 +15,7 @@ ENDIF(CMAKE_VERSION VERSION_LESS 3.12.0)
 ADD_LIBRARY(TARGET_lpeg MODULE
             lpcap.c
             lpcode.c
+            lpcset.c
             lpprint.c
             lptree.c
             lpvm.c)

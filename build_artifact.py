@@ -1,9 +1,8 @@
-#! /usr/bin/python2.7
+#! /usr/bin/python3
 
 from jonchki import cli_args
 from jonchki import install
 from jonchki import jonchkihere
-from jonchki import vcs_id
 
 import glob
 import os
@@ -36,7 +35,7 @@ strCfg_jonchkiHerePath = os.path.join(
     'jonchki'
 )
 # This is the Jonchki version to use.
-strCfg_jonchkiVersion = '0.0.7.1'
+strCfg_jonchkiVersion = '0.0.11.1'
 # Look in this folder for Jonchki archives before downloading them.
 strCfg_jonchkiLocalArchives = os.path.join(
     strCfg_projectFolder,
@@ -302,7 +301,6 @@ astrCmd.append('--build-dependencies')
 astrCmd.append(astrMatch[0])
 subprocess.check_call(' '.join(astrCmd), shell=True, cwd=strCwd, env=astrEnv)
 
-
 # ---------------------------------------------------------------------------
 #
 # Build the LUA5.4 version.
@@ -321,3 +319,5 @@ astrCmd.append(strCfg_projectFolder)
 strCwd = os.path.join(strCfg_workingFolder, 'lua5.4')
 subprocess.check_call(' '.join(astrCmd), shell=True, cwd=strCwd, env=astrEnv)
 subprocess.check_call('%s pack' % strMake, shell=True, cwd=strCwd, env=astrEnv)
+
+

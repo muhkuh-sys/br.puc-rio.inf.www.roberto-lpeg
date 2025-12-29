@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dependency-log>
+	<dependencies>
+		<dependency group="br.puc-rio.inf.www.roberto" module="lpeg" artifact="lua5.4-lpeg" version="1.1.0.3"/>
+		<dependency group="org.lua" module="lua" artifact="lua" version="5.4.8.1"/>
+	</dependencies>
+	<build-dependencies>
+	</build-dependencies>
+</dependency-log>
